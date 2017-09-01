@@ -86,10 +86,7 @@ chmod 755 ./device/tecno/w2/patches/reset.sh
    *Tip* : *simply type ```lunch lineage_w2-userdebug``` lunch it*
 
  3. brunch w2 [for Lineage Based]
-  # Example :
-  ```
-   _brunch w2_    [ this for LOS ]
-  ```
+  # Example *: ```brunch w2```    [ this for LOS ]*
 
  4.  It will take time to compile your build
  5. Find your build in $out directory
