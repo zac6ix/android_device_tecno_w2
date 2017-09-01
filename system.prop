@@ -42,7 +42,7 @@ ro.kernel.zio=38,108,105,16
 debug.hwui.render_dirty_regions=false
 
 # [ SCREEN DENSITY ]
-ro.sf.lcd_density=320
+ro.sf.lcd_density=240
 
 # [ SYSTEM_PERFOMANCE ]
 ro.mtk_perf_simple_start_win=1
