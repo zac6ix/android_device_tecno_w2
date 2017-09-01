@@ -27,12 +27,12 @@ allow tunman tunman_prop:property_service set;
 unix_socket_connect(tunman, netd, netd)
 
 # Multiple instance detection (fs lock)
-allow tunman shell_data_file:dir { search write add_name};
-allow tunman shell_data_file:file { create open read write lock };
+#allow tunman shell_data_file:dir { search write add_name};
+#allow tunman shell_data_file:file { create open read write lock };
 
 #allow tunman system_data_file:dir { search write add_name};
 #allow tunman system_data_file:file { create open read write lock};
-allow tunman system_data_file:file { open read };
+#allow tunman system_data_file:file { open read };
 
 # TUN management
 allow tunman self:capability { net_admin net_raw dac_override };
@@ -56,4 +56,4 @@ allow tunman qtaguid_proc:file { open write };
 
 allow tunman tunman_socket:dir { search write add_name remove_name};
 allow tunman tunman_socket:sock_file { create open read write lock unlink};
-allow untrusted_app tunman_socket:sock_file { read write };
+#allow untrusted_app tunman_socket:sock_file { read write };
