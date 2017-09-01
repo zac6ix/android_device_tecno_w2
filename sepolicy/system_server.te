@@ -35,8 +35,8 @@ allow system_server media_wfd_prop:property_service set;
 # Date : WK14.34
 # Operation : Migration 
 # Purpose : for idling on homescreen
-allow system_server dontpanic_data_file:dir search;
-allow system_server mnld:unix_dgram_socket sendto;
+#allow system_server dontpanic_data_file:dir search;
+#allow system_server mnld:unix_dgram_socket sendto;
 
 # Date : WK14.34
 # Operation : Migration 

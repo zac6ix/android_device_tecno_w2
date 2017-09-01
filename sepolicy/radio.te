@@ -11,8 +11,6 @@ allow radio rild3_socket:sock_file write;
 allow radio rild4_socket:sock_file write;
 allow radio rild_via_socket:sock_file write;
 allow radio rild_md2_socket:sock_file write;
-allow radio sdcard_internal:dir { write create add_name };
-allow radio sdcard_internal:file { read write getattr open create };
 ##violate never allow rule
 #allow radio sysfs:file write;
 ##violate never allow rule
@@ -36,8 +34,6 @@ allow radio mtgpio_device:chr_file { read ioctl open };
 allow radio platformblk_device:dir search;
 allow radio stpbt_device:chr_file { read write open };
 allow radio stpant_device:chr_file { read write open };
-allow radio bt_int_adp_socket:sock_file write;
-allow radio mtkbt:unix_dgram_socket sendto;
 allow radio guiext-server:binder { transfer call };
 allow radio persist_ril_prop:property_service set;
 allow radio mt6605_device:chr_file { read write ioctl open getattr };
@@ -51,12 +47,6 @@ allow radio custom_file:file { read open getattr};
 
 # C2K System Property
 allow radio cdma_prop:property_service set;
-
-# Date : 2014/10/13
-# Operation : IT
-# Purpose : mtk_agpsd establishes the local socket as agpsd for all A-GPS 
-# application to do something with mtk_agpsd
-unix_socket_connect(radio, agpsd, mtk_agpsd)
 
 # Date : 2014/10/14
 # Operation : IT

@@ -90,7 +90,7 @@ allow system_app cache_file:file { write create open };
 # Purpose : [op01 agps setting][mtk_agpsd establishes the local socket as agpsd for all A-GPS 
 #           application to do something with mtk_agpsd in system app]
 # Package: com.mediatek.op01.plugin
-unix_socket_connect(system_app, agpsd, mtk_agpsd);
+#unix_socket_connect(system_app, agpsd, mtk_agpsd);
 
 # Date : 2014/10/28
 # Operation: SQC
@@ -130,7 +130,7 @@ allow system_app proc_secmem:file rw_file_perms;
 # Operation: SQC
 # Purpose: [Settings][Developer options module will communicate with all Services through binder call]
 # Package: com.android.settings
-binder_call(system_app, mtkbt)
+#binder_call(system_app, mtkbt)
 binder_call(system_app, MtkCodecService)
 
 # Date : 2014/11/26
