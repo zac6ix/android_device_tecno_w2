@@ -41,8 +41,6 @@ allow radio mtkbt:unix_dgram_socket sendto;
 allow radio guiext-server:binder { transfer call };
 allow radio persist_ril_prop:property_service set;
 allow radio mt6605_device:chr_file { read write ioctl open getattr };
-allow radio nfc_socket:dir { write add_name remove_name search };
-allow radio nfc_socket:sock_file { create write unlink setattr };
 allow radio system_prop:property_service set;
 
 # Date: wk14.40
