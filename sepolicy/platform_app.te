@@ -8,7 +8,8 @@
 # Operation : Migration
 # Purpose : mtk_agpsd establishes the local socket as agpsd for all A-GPS 
 #           application to do something with mtk_agpsd
-unix_socket_connect(platform_app, agpsd, mtk_agpsd);
+#unix_socket_connect(platform_app, agpsd, mtk_agpsd);
+unix_socket_connect(platform_app, agpsd);
 
 # Date : 2014/08/21
 # Operation : Migration
