@@ -1,0 +1,8 @@
+[
+  {
+    "remote": "github",
+    "repository": "iykequame/android_vendor_tecno_w2",
+    "target_path": "vendor/tecno/w2",
+    "branch": "master"
+  }
+]

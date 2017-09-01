@@ -1,0 +1,67 @@
+# [ zackie_ai]
+# system.prop for tecno w2
+#
+# [ HW ]
+ro.hardware=mt6580
+# [ RIL ]
+rild.libpath=mtk-ril.so
+rild.libargs=-d /dev/ttyC0
+# [ WiFi ]
+wifi.interface=wlan0
+ro.mediatek.wlan.wsc=1
+ro.mediatek.wlan.p2p=1
+mediatek.wlan.ctia=0
+wifi.tethering.interface=ap0
+wifi.direct.interface=p2p0
+
+# [ OPENGLES ]
+ro.opengles.version=196608
+
+# [  AUDIO]
+ro.camera.sound.forced=0
+ro.audio.silent=0
+
+# [ FM RADIO ]
+fmradio.driver.enable=1
+
+# [ CAMERA ]
+media.stagefright.legacyencoder=true
+media.stagefright.less-secure=true
+
+# [ ZYGOTE_PRELOADER ]
+ro.zygote.preload.enable=0
+
+# [ ON_SCREEN_NAVBAR ]
+# temporary enables NAV bar (soft keys)
+qemu.hw.mainkeys=0
+
+# [ KERNEL ]
+ro.kernel.zio=38,108,105,16
+
+# [ Disable dirty region for Mali ]
+debug.hwui.render_dirty_regions=false
+
+# [ SCREEN DENSITY ]
+ro.sf.lcd_density=320
+
+# [ SYSTEM_PERFOMANCE ]
+ro.mtk_perf_simple_start_win=1
+ro.mtk_perf_response_time=1
+persist.sys.timezone = Asia/Kolkata
+ro.mtk_perfservice_support=1
+persist.logd.logpersistd=logcatd
+ro.telephony.default_network=9
+persist.radio.gprs.prefer=0
+dalvik.vm.heapgrowthlimit=128m
+dalvik.vm.heapsize=256m
+
+# [ :: MT6580_CHECK ::]
+ro.mediatek.platform=MT6580
+mediatek.wlan.chip=CONSYS_MT6735
+mediatek.wlan.module.postfix=_consys_mt6735
+ro.mediatek.chip_ver=S01
+ro.mediatek.version.release=W2-AW600B1-M-170314V19
+
+# [ CLEARMOTION ]
+persist.sys.display.clearMotion=0
+
