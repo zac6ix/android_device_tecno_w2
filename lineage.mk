@@ -7,7 +7,7 @@ PRODUCT_RELEASE_NAME := w2
 $(call inherit-product, vendor/cm/config/common_full_phone.mk)
 
 # Inherit device configuration
-$(call inherit-product, device/tecno/w2/device.mk)
+$(call inherit-product, device/tecno/w2/device_w2.mk)
 
 ## Device identifier. This must come after all inclusions
 PRODUCT_DEVICE := w2

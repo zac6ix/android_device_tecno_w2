@@ -43,6 +43,8 @@ BOARD_KERNEL_PAGESIZE := 2048
 BOARD_MKBOOTIMG_ARGS := --base 0x80000000 --pagesize 2048 --kernel_offset 0x00008000 --ramdisk_offset 0x04000000 --second_offset 0x80f00000 --tags_offset 0x0e000000 --board W2ZC6X
 TARGET_PREBUILT_KERNEL := $(LOCAL_PATH)/prebuilt/kernel
 TARGET_KMODULES := true
+BOARD_CUSTOM_BOOTIMG_MK := $(LOCAL_PATH)/bootimg.mk
+BOARD_CUSTOM_BOOTIMG := true
 # ----------------------------------------------------------------------
 # Disable memcpy opt (for audio libraries)
 TARGET_CPU_MEMCPY_OPT_DISABLE := true
@@ -50,7 +52,8 @@ TARGET_CPU_MEMCPY_OPT_DISABLE := true
 # Display
 DEVICE_RESOLUTION := 480x854
 TARGET_SCREEN_HEIGHT := 854
-TARGET_SCREEN_WIDTH := 480			   
+TARGET_SCREEN_WIDTH := 480		
+TARGET_BOOTANIMATION_MULTITHREAD_DECODE := true	   
 # ----------------------------------------------------------------------
 # OpenGL
 USE_OPENGL_RENDERER:= true
@@ -73,8 +76,12 @@ TARGET_PROVIDES_LIBLIGHT := true
 # Enable Minikin text layout engine (will be the default soon)
 USE_MINIKIN := true
 # ----------------------------------------------------------------------
-# Charger
+#Offline Charging
+BOARD_CHARGING_MODE_BOOTING_LPM := /sys/class/BOOT/BOOT/boot/boot_mode
+BOARD_CHARGER_DISABLE_INIT_BLANK := true
+BOARD_CHARGER_ENABLE_SUSPEND := true
 BOARD_CHARGER_SHOW_PERCENTAGE := true
+BOARD_HAL_STATIC_LIBRARIES := libhealthd.mtk
 # ----------------------------------------------------------------------
 # Fonts
 EXTENDED_FONT_FOOTPRINT := true
@@ -86,6 +93,10 @@ BOARD_HAVE_BLUETOOTH := true
 BOARD_HAVE_BLUETOOTH_MTK := true
 BOARD_BLUETOOTH_DOES_NOT_USE_RFKILL := true
 BOARD_BLUETOOTH_BDROID_BUILDCFG_INCLUDE_DIR := $(LOCAL_PATH)/bluetooth
+# ----------------------------------------------------------------------
+# Enable dex-preoptimization
+WITH_DEXPREOPT := false
+DONT_DEXPREOPT_PREBUILTS := true
 # ----------------------------------------------------------------------
 # GPS
 BOARD_GPS_LIBRARIES := true
@@ -156,11 +167,12 @@ TW_NO_USB_STORAGE := true
 BOARD_SEPOLICY_DIRS := \
        device/tecno/w2/sepolicy
 
-#BOARD_SECCOMP_POLICY += \
-       #$ (DEVICE_PATH)/seccomp  
+BOARD_SECCOMP_POLICY += \
+       $ (DEVICE_PATH)/seccomp  
 # ----------------------------------------------------------------------
-# Use old sepolicy version
-#POLICYVERS := 29
+# sepolicy version
+# mt6580 kernel 3.18.19 uses version 30 ## no need to activate again
+#POLICYVERS := 30
 # ----------------------------------------------------------------------
 # misc
 TARGET_LDPRELOAD += libxlog.so

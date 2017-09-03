@@ -15,12 +15,22 @@
 # Path
 LOCAL_PATH := device/tecno/w2
 
+PRODUCT_CHARACTERISTICS := default
+
+DEVICE_PACKAGE_OVERLAYS += $(LOCAL_PATH)/overlay
+
+ifeq ($(TARGET_PREBUILT_KERNEL),)
+    LOCAL_KERNEL := $(LOCAL_PATH)/kernel
+else
+    LOCAL_KERNEL := $(TARGET_PREBUILT_KERNEL)
+endif
+
 PRODUCT_DEVICE := w2
 PRODUCT_NAME := full_w2
 PRODUCT_BRAND := tecno
 PRODUCT_MODEL := w2
 PRODUCT_MANUFACTURER := tecno
-PRODUCT_RESTRICT_VENDOR_FILES := false
+#PRODUCT_RESTRICT_VENDOR_FILES := false
 
 # Actual bootanimation size for the screen
 TARGET_SCREEN_HEIGHT := 854
@@ -40,7 +50,8 @@ LOCAL_PATH := device/tecno/w2
 DEVICE_PACKAGE_OVERLAYS += $(LOCAL_PATH)/overlay
 
 # Device uses high-density artwork where available
-PRODUCT_AAPT_CONFIG := normal xhdpi xxhdpi
+#PRODUCT_AAPT_CONFIG := normal xhdpi xxhdpi
+PRODUCT_AAPT_CONFIG := normal 
 PRODUCT_AAPT_PREF_CONFIG := hdpi
 
 # Inherit from the common Open Source product configuration
@@ -51,6 +62,10 @@ TARGET_OTA_ASSERT_DEVICE := tecno,tecno_w2,tecno w2,w2
 
 PRODUCT_PACKAGES += \
    libxlog
+
+# Set default player to AwesomePlayer
+PRODUCT_PROPERTY_OVERRIDES += \
+    persist.sys.media.use-awesome=true
 
 # Audio
 PRODUCT_PACKAGES += \
@@ -206,12 +221,12 @@ PRODUCT_DEFAULT_PROPERTY_OVERRIDES := \
 	ro.crypto.state=unencrypted \
 	ro.mount.fs=EXT4 \
 	ro.secure=0 \
-    	ro.adb.secure=0 \
-    	persist.service.acm.enable=0 \
-    	persist.sys.usb.config=mtp,adb \
+    ro.adb.secure=0 \
+    persist.service.acm.enable=0 \
+    persist.sys.usb.config=mtp,adb \
 	ro.allow.mock.location=0 \
 	ro.debuggable=1 \
-    	persist.service.adb.enable=1 \
+    persist.service.adb.enable=1 \
 	ro.zygote=zygote32 \
 	camera.disable_zsl_mode=1 \
 	dalvik.vm.dex2oat-Xms=64m \
