@@ -61,6 +61,8 @@ mediatek.wlan.chip=CONSYS_MT6735
 mediatek.wlan.module.postfix=_consys_mt6735
 ro.mediatek.chip_ver=S01
 ro.mediatek.version.release=W2-AW600B1-M-170314V19
+ro.telephony.ril_class=MT6735
+ro.telephony.ril.config=fakeiccid
 
 # [ CLEARMOTION ]
 persist.sys.display.clearMotion=0
