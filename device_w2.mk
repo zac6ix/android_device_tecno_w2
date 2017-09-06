@@ -50,8 +50,9 @@ LOCAL_PATH := device/tecno/w2
 DEVICE_PACKAGE_OVERLAYS += $(LOCAL_PATH)/overlay
 
 # Device uses high-density artwork where available
-PRODUCT_AAPT_CONFIG := normal xhdpi xxhdpi
-PRODUCT_AAPT_PREF_CONFIG := hdpi
+PRODUCT_AAPT_CONFIG := normal
+PRODUCT_AAPT_PREF_CONFIG := xhdpi
+PRODUXT_AAPT_PREBUILT_DPI := xxhdpi xhdpi 240dpi hdpi tvdpi ldpi
 
 # Inherit from the common Open Source product configuration
 $(call inherit-product, $(SRC_TARGET_DIR)/product/full_base_telephony.mk)
@@ -250,7 +251,7 @@ PRODUCT_DEFAULT_PROPERTY_OVERRIDES += \
 
 PRODUCT_PROPERTY_OVERRIDES += \
     dalvik.vm.dex2oat-filter=speed \
-    dalvik.vm.dex2oat-swap=false
+    dalvik.vm.dex2oat-swap=false \
     ro.kernel.android.checkjni=0 \
     ro.telephony.ril.config=signalstrength  \
     persist.call_recording.enabled=true \
