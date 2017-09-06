@@ -101,8 +101,7 @@ PRODUCT_COPY_FILES += \
 PRODUCT_PACKAGES += libmt6580
 
 PRODUCT_PROPERTY_OVERRIDES += \
-    ro.telephony.ril_class=MT6580
-
+    ro.telephony.ril_class=MT6735
 # Ramdisk
 PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/rootdir/enableswap.sh:root/enableswap.sh \
@@ -235,8 +234,8 @@ PRODUCT_DEFAULT_PROPERTY_OVERRIDES := \
 	dalvik.vm.image-dex2oat-Xmx=64m \
 	ro.dalvik.vm.native.bridge=0 \
 	ro.hardware=mt6580 \
-	ro.telephony.ril_class=MT6580 \
-	ro.telephony.ril.config=signalstrength 
+	ro.telephony.ril_class=MT6735 \
+	ro.telephony.ril.config=fakeiccid 
 
 PRODUCT_DEFAULT_PROPERTY_OVERRIDES += \
     pm.dexopt.first-boot=verify-at-runtime \
