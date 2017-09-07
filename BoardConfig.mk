@@ -44,8 +44,8 @@ BOARD_KERNEL_PAGESIZE := 2048
 BOARD_MKBOOTIMG_ARGS := --base 0x80000000 --pagesize 2048 --kernel_offset 0x00008000 --ramdisk_offset 0x04000000 --second_offset 0x80f00000 --tags_offset 0x0e000000 --board W2ZC6X
 TARGET_PREBUILT_KERNEL := $(LOCAL_PATH)/kernel
 TARGET_KMODULES := true
-BOARD_CUSTOM_BOOTIMG_MK := $(LOCAL_PATH)/bootimg.mk
-BOARD_CUSTOM_BOOTIMG := true
+#BOARD_CUSTOM_BOOTIMG_MK := $(LOCAL_PATH)/bootimg.mk
+#BOARD_CUSTOM_BOOTIMG := true
 # ----------------------------------------------------------------------
 # Disable memcpy opt (for audio libraries)
 TARGET_CPU_MEMCPY_OPT_DISABLE := true
