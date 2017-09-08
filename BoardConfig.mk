@@ -37,11 +37,12 @@ BOARD_USES_MTK_AUDIO := true
 BOARD_USES_MTK_HARDWARE :=true
 # ----------------------------------------------------------------------
 # Kernel
-#BOARD_KERNEL_CMDLINE := bootopt=64S3,32S1,32S1 androidboot.selinux=permissive
-BOARD_KERNEL_CMDLINE := bootopt=64S3,32S1,32S1
-BORD_KERNEL_BASE := 0x80000000
-BOARD_KERNEL_PAGESIZE := 2048
-BOARD_MKBOOTIMG_ARGS := --base 0x80000000 --pagesize 2048 --kernel_offset 0x00008000 --ramdisk_offset 0x04000000 --second_offset 0x80f00000 --tags_offset 0x0e000000 --board W2ZC6X
+BOARD_KERNEL_CMDLINE += \
+	bootopt=64S3,32N2,32N2 \
+	androidboot.selinux=permissive
+BOARD_KERNEL_BASE := 0x80000000
+BOARD_KERNEL_PAGESIZE := 2048 
+BOARD_MKBOOTIMG_ARGS := --kernel_offset 0x00008000 --ramdisk_offset 0x04000000 --tags_offset 0x0e000000 --board W2ZC6X
 TARGET_PREBUILT_KERNEL := $(LOCAL_PATH)/kernel
 TARGET_KMODULES := true
 #BOARD_CUSTOM_BOOTIMG_MK := $(LOCAL_PATH)/bootimg.mk
@@ -165,10 +166,10 @@ TW_MAX_BRIGHTNESS := 255
 TW_NO_USB_STORAGE := true
 # ----------------------------------------------------------------------
 # SELinux
-BOARD_SEPOLICY_DIRS := \
+#BOARD_SEPOLICY_DIRS := \
        device/tecno/w2/sepolicy
 
-BOARD_SECCOMP_POLICY += \
+#BOARD_SECCOMP_POLICY += \
        $ (DEVICE_PATH)/seccomp  
 # ----------------------------------------------------------------------
 # sepolicy version
