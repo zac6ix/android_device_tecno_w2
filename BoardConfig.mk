@@ -177,7 +177,7 @@ TW_NO_USB_STORAGE := true
 #POLICYVERS := 30
 # ----------------------------------------------------------------------
 # misc
-TARGET_LDPRELOAD += libxlog.so
+#TARGET_LDPRELOAD += libxlog.so
 ##TARGET_LDPRELOAD += libxlog.so:libmtk_symbols.so # for symbols in mtkaudio.cpp + mtksymbols
 # ----------------------------------------------------------------------
 # Hack for building without kernel sources
