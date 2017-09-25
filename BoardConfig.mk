@@ -155,7 +155,7 @@ TARGET_INCLUDE_GPS_SYMBOLS := true
 TARGET_INCLUDE_UI_SYMBOLS := true
 TARGET_INCLUDE_OMX_SYMBOLS := true
 TARGET_INCLUDE_OTH_SYMBOLS := true
-include $(DEVICE_PATH)sys/symbols.mk
+include $(DEVICE_PATH)/sys/symbols.mk
 
 # RIL
 BOARD_RIL_CLASS := ../../../$(LOCAL_PATH)/ril
