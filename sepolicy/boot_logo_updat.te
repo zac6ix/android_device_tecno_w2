@@ -1,0 +1,3 @@
+allow init property_socket:sock_file { write };
+allow init graphics_device:chr_file { write };
+allow init graphics_device:chr_file { ioctl };

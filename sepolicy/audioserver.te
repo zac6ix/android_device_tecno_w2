@@ -1,0 +1,5 @@
+# los14
+
+allow audioserver block_device:blk_file open;
+allow audioserver block_device:blk_file read;
+allow audioserver block_device:blk_file write;

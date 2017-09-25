@@ -1,0 +1,5 @@
+# Wifi
+allow netd wmtWifi_device:chr_file w_file_perms;
+
+# los 14
+allow netd unlabeled:dir search;

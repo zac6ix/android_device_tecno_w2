@@ -1,0 +1,4 @@
+# los 14
+allow cameraserver unlabeled:dir search;
+allow cameraserver debugfs:file write;
+allow cameraserver debugfs:file open;

@@ -93,53 +93,35 @@
     <bool name="config_wifi_background_scan_support">true</bool>
     
     <!-- Disable IpReachability monitor -->
-	<!-- committing out for now -->
-	<!--
-    <bool name="config_wifi_ipreachability_monitor">false</bool>
-	-->
+    <add-resource type="bool" name="config_wifi_ipreachability_monitor">false</add-resource>
+
     <!-- Wifi DualBand -->
     <bool name="config_wifi_dual_band_support">true</bool>    
 
     <!-- Is the notification LED intrusive? Used to decide if there should be a disable option -->
-<!-- committing out for now -->
-	<!--
     <bool name="config_intrusiveNotificationLed">true</bool>
--->
+
     <!-- Is the battery LED intrusive? Used to decide if there should be a disable option -->
-<!-- committing out for now -->
-	<!--
     <bool name="config_intrusiveBatteryLed">true</bool>
--->
+
     <!-- Does the notification LED support multiple colors? Used to decide if the user can change the colors -->
-	<!-- committing out for now -->
-	<!--
-    <bool name="config_multiColorNotificationLed">true</bool> 
-	-->
+    <add-resource type="bool" name="config_multiColorNotificationLed">true</add-resource>
+
     <!-- Does the battery LED support multiple colors? Used to decide if the user can change the colors -->
-<!-- committing out for now -->
-	<!--
-    <bool name="config_multiColorBatteryLed">true</bool>
--->
+    <add-resource type="bool" name="config_multiColorBatteryLed">true</add-resource>
+
     <!-- Default color for notification LED is green. -->
-<!-- committing out for now -->
-	<!--
     <color name="config_defaultNotificationColor">#ff00ff00</color>
--->
+
     <!-- Default value for led color when battery is low on charge -->
-<!-- committing out for now -->
-	<!--
     <integer name="config_notificationsBatteryLowARGB">0xffff0000</integer>
--->
+
     <!-- Default value for led color when battery is medium charged -->
-<!-- committing out for now -->
-	<!--
     <integer name="config_notificationsBatteryMediumARGB">0xffff0000</integer>
--->
+
     <!-- Default value for led color when battery is fully charged -->
-<!-- committing out for now -->
-	<!--
     <integer name="config_notificationsBatteryFullARGB">0xff00ff00</integer>   
--->
+   
     <bool name="config_automatic_brightness_available">true</bool>
 
     <integer-array name="config_autoBrightnessLevels">

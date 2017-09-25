@@ -14,6 +14,9 @@ on early-init
     chmod 0755 /sys/kernel/debug
 
 on init
+	# libshim
+	# export LD_SHIM_LIBS "/system/bin/vtservice|libmtk_symbols.so"
+
     # Support legacy paths
     symlink /sdcard /mnt/sdcard
 
@@ -165,8 +168,6 @@ on post-fs-data
     #liuyang add begin
     chown root   radio  /sys/class/leds/red/brightness
     chown root   radio  /sys/class/leds/green/brightness
-    chown root   radio  /sys/class/leds/blue/brightness
-    chown root   radio  /sys/class/leds/breathing-light/brightness
     #liuyang add end
 
     # Touch Panel
@@ -216,6 +217,8 @@ on post-fs-data
     chmod 0660 /dev/gyroscope
     chmod 0660 /dev/aal_als
     chmod 0660 /dev/m_batch_misc
+    chmod 0660 /dev/als_ps_sub
+    chmod 0660 /dev/aal_als_sub
 
     chmod 0660 /sys/devices/platform/msensor/driver/cpsopmode
     chmod 0660 /sys/devices/platform/msensor/driver/cpsreptxy
@@ -231,6 +234,8 @@ on post-fs-data
     chown system system /dev/gyroscope
     chown system system /dev/aal_als
     chown system system /dev/m_batch_misc
+    chown radio system /dev/als_ps_sub
+    chown system system /dev/aal_als_sub
 
     chmod 0660 /sys/class/misc/m_acc_misc/accenablenodata
     chmod 0660 /sys/class/misc/m_acc_misc/accactive
@@ -762,9 +767,7 @@ on boot
     #liuyang add begin
     chmod 0777 /sys/class/leds/red/brightness
     chmod 0777 /sys/class/leds/green/brightness
-    chmod 0777 /sys/class/leds/blue/brightness
-    chmod 0777 /sys/class/leds/breathing-light/brightness
-    #liuyang add end
+#liuyang add end
 
     # Permission for hibernation
     chown radio system /sys/power/tuxonice
@@ -827,13 +830,8 @@ on boot
 #liuyang add begin
     chmod 0777 /sys/class/leds/red/brightness
     chmod 0777 /sys/class/leds/green/brightness
-    chmod 0777 /sys/class/leds/blue/brightness
     chown root radio  /sys/class/leds/red/brightness
     chown root radio  /sys/class/leds/green/brightness
-    chown root radio  /sys/class/leds/blue/brightness
-
-    chmod 0777 /sys/class/leds/breathing-light/brightness
-    chown root radio  /sys/class/leds/breathing-light/brightness
 #liuyang add end
 #Define device for ATCID
     chmod 0660 /dev/ttyGS0

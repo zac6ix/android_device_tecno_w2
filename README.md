@@ -67,15 +67,18 @@ git clone https://github.com/zac6ix/android_vendor_tecno_w2.git -b master vendor
 
 
 # you have to/must patch your MTK to meet boot up requirements :)
+
+if you want to check the patch then use :
 ```
-chmod 755 ./device/tecno/w2/patches/apply-patches.sh
-./device/tecno/w2/patches/apply-patches.sh
+chmod 755 ./device/tecno/w2/patches/check.sh
+./device/tecno/w2/patches/check.sh
 ```
-if you want to reset the patch then use :
+
 ```
-chmod 755 ./device/tecno/w2/patches/reset.sh
-./device/tecno/w2/patches/reset.sh
+chmod 755 ./device/tecno/w2/patches/apply.sh
+./device/tecno/w2/patches/apply.sh
 ```
+
 
 *Now ==>*
 

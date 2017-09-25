@@ -1,0 +1,2 @@
+# los 14
+allow debuggerd unlabeled:dir search;

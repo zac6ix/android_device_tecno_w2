@@ -1,0 +1,2 @@
+allow init storage_file:lnk_file { read };
+

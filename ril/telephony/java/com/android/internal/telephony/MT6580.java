@@ -40,7 +40,7 @@ import com.android.internal.telephony.MtkEccList;
  *
  * {@hide}
  */
-public class MT6735 extends RIL implements CommandsInterface {
+public class MT6580 extends RIL implements CommandsInterface {
 
     private static final int RIL_UNSOL_RESPONSE_PS_NETWORK_STATE_CHANGED = 3015;
     private static final int RIL_UNSOL_RESPONSE_REGISTRATION_SUSPENDED = 3024;
@@ -62,19 +62,19 @@ public class MT6735 extends RIL implements CommandsInterface {
     private TelephonyManager mTelephonyManager;
     private MtkEccList mEccList;
 
-    public MT6735(Context context, int preferredNetworkType, int cdmaSubscription) {
+    public MT6580(Context context, int preferredNetworkType, int cdmaSubscription) {
         super(context, preferredNetworkType, cdmaSubscription, null);
         //mContext = context;
-        Rlog.i("MT6735", "Ctor1: context is " + mContext);
+        Rlog.i("MT6580", "Ctor1: context is " + mContext);
         mTelephonyManager = (TelephonyManager) context.getSystemService(Context.TELEPHONY_SERVICE);
         mEccList = new MtkEccList();
     }
 
-    public MT6735(Context context, int preferredNetworkType,
+    public MT6580(Context context, int preferredNetworkType,
             int cdmaSubscription, Integer instanceId) {
         super(context, preferredNetworkType, cdmaSubscription, instanceId);
         //mContext = context;
-        Rlog.i("MT6735", "Ctor2: context is " + mContext);
+        Rlog.i("MT6580", "Ctor2: context is " + mContext);
         mTelephonyManager = (TelephonyManager) context.getSystemService(Context.TELEPHONY_SERVICE);
         mEccList = new MtkEccList();
     }
@@ -95,9 +95,9 @@ public class MT6735 extends RIL implements CommandsInterface {
     }
 
 
-    @Override
+    
     protected void
-    processUnsolicited (Parcel p, int type) {
+    processUnsolicited (Parcel p) {
         Object ret;
         int dataPosition = p.dataPosition(); // save off position within the Parcel
         int response = p.readInt();
@@ -113,7 +113,7 @@ public class MT6735 extends RIL implements CommandsInterface {
                 // Rewind the Parcel
                 p.setDataPosition(dataPosition);
                 // Forward responses that we are not overriding to the super class
-                super.processUnsolicited(p, type);
+                //super.processUnsolicited(p);
                 return;
         }
         switch(response) {
@@ -217,7 +217,7 @@ public class MT6735 extends RIL implements CommandsInterface {
         return response;
     }
 
-    @Override
+    
     public void setInitialAttachApn(String apn, String protocol, int authType, String username,
             String password, Message result) {
         RILRequest rr = RILRequest.obtain(RIL_REQUEST_SET_INITIAL_ATTACH_APN, null);
@@ -251,7 +251,7 @@ public class MT6735 extends RIL implements CommandsInterface {
         return null;
     }
 
-    @Override
+    
     protected Object
     responseSimRefresh(Parcel p) {
         IccRefreshResponse response = new IccRefreshResponse();
@@ -264,10 +264,10 @@ public class MT6735 extends RIL implements CommandsInterface {
         return response;
     }
 
-    @Override
+    
     public void
-    setupDataCall(int radioTechnology, int profile, String apn,
-            String user, String password, int authType, String protocol,
+    setupDataCall(String radioTechnology, String profile, String apn,
+            String user, String password, String authType, String protocol,
             Message result) {
         int interfaceId=0;
         RILRequest rr
@@ -275,12 +275,12 @@ public class MT6735 extends RIL implements CommandsInterface {
 
         rr.mParcel.writeInt(8); //bumped by one
 
-        rr.mParcel.writeString(Integer.toString(radioTechnology + 2));
-        rr.mParcel.writeString(Integer.toString(profile));
+        rr.mParcel.writeString(Integer.toString(Integer.parseInt(radioTechnology) + 2));
+        rr.mParcel.writeString(profile);
         rr.mParcel.writeString(apn);
         rr.mParcel.writeString(user);
         rr.mParcel.writeString(password);
-        rr.mParcel.writeString(Integer.toString(authType));
+        rr.mParcel.writeString(authType);
         rr.mParcel.writeString(protocol);
 
         /* Find the first available interfaceId */
@@ -300,7 +300,7 @@ public class MT6735 extends RIL implements CommandsInterface {
         send(rr);
     }
 
-    @Override
+    
     public void
     deactivateDataCall(int cid, int reason, Message result) {
         for (int i=0; i < 4; i++) {
@@ -312,7 +312,7 @@ public class MT6735 extends RIL implements CommandsInterface {
         super.deactivateDataCall(cid, reason, result);
     }
 
-    @Override
+    
     public void
     dial(String address, int clirMode, UUSInfo uusInfo, Message result) {
         if (mEccList.isEmergencyNumberExt(address)) {
@@ -356,7 +356,7 @@ public class MT6735 extends RIL implements CommandsInterface {
         if (mEccList != null) mEccList.updateEmergencyNumbersProperty();
     }
 
-    @Override
+    
     public void
     setRadioPower(boolean on, Message result) {
         boolean isInApm = Settings.Global.getInt(mContext.getContentResolver(),
@@ -385,9 +385,9 @@ public class MT6735 extends RIL implements CommandsInterface {
     }
 
     // Solicited request handling
-    @Override
+    
     protected RILRequest
-    processSolicited (Parcel p, int type) {
+    processSolicited (Parcel p) {
         int serial, error;
         int dataPosition = p.dataPosition(); // save off position within the Parcel
         serial = p.readInt();
@@ -428,7 +428,7 @@ public class MT6735 extends RIL implements CommandsInterface {
             p.setDataPosition(dataPosition);
 
             // Forward responses that we are not overriding to the super class
-            return super.processSolicited(p, type);
+            //return super.processSolicited(p);
         }
 
 
@@ -496,12 +496,12 @@ public class MT6735 extends RIL implements CommandsInterface {
         return ret;
     }
 
-    @Override
+    
     public void
     iccIOForApp (int command, int fileid, String path, int p1, int p2, int p3,
             String data, String pin2, String aid, Message result) {
         if (command == 0xc0 && p3 == 0) {
-            Rlog.i("MT6735", "Override the size for the COMMAND_GET_RESPONSE 0 => 15");
+            Rlog.i("MT6580", "Override the size for the COMMAND_GET_RESPONSE 0 => 15");
             p3 = 15;
         }
         super.iccIOForApp(command, fileid, path, p1, p2, p3, data, pin2, aid, result);

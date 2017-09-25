@@ -1,41 +1,9 @@
-# Copyright (C) 2013 The Android Open Source Project
-#
-# Licensed under the Apache License, Version 2.0 (the "License");
-# you may not use this file except in compliance with the License.
-# You may obtain a copy of the License at
-#
-#      http://www.apache.org/licenses/LICENSE-2.0
-#
-# Unless required by applicable law or agreed to in writing, software
-# distributed under the License is distributed on an "AS IS" BASIS,
-# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-# See the License for the specific language governing permissions and
-# limitations under the License.
-
-# Path
-LOCAL_PATH := device/tecno/w2
-
-PRODUCT_CHARACTERISTICS := default
-
-DEVICE_PACKAGE_OVERLAYS += $(LOCAL_PATH)/overlay
-
-PRODUCT_DEVICE := w2
-PRODUCT_NAME := full_w2
-PRODUCT_BRAND := tecno
-PRODUCT_MODEL := w2
-PRODUCT_MANUFACTURER := tecno
-#PRODUCT_RESTRICT_VENDOR_FILES := false
-
-# Actual bootanimation size for the screen
-TARGET_SCREEN_HEIGHT := 854
-TARGET_SCREEN_WIDTH := 480	
-TARGET_BOOTANIMATION_NAME := 480
-
-PRODUCT_DEFAULT_LANGUAGE := en
-PRODUCT_DEFAULT_REGION   := US
+$(call inherit-product, $(SRC_TARGET_DIR)/product/languages_full.mk)
 
 # The gps config appropriate for this device
 $(call inherit-product, device/common/gps/gps_us_supl.mk)
+
+# copy vendor files
 $(call inherit-product, device/tecno/w2/vendor/copyfiles.mk)
 $(call inherit-product, vendor/tecno/w2/w2-vendor-blobs.mk)
 
@@ -44,22 +12,11 @@ LOCAL_PATH := device/tecno/w2
 DEVICE_PACKAGE_OVERLAYS += $(LOCAL_PATH)/overlay
 
 # Device uses high-density artwork where available
-PRODUCT_AAPT_CONFIG := normal
+PRODUCT_AAPT_CONFIG := normal xhdpi xxhdpi
 PRODUCT_AAPT_PREF_CONFIG := xhdpi
-PRODUXT_AAPT_PREBUILT_DPI := xxhdpi xhdpi 240dpi hdpi tvdpi ldpi
-
-# Inherit from the common Open Source product configuration
-$(call inherit-product, $(SRC_TARGET_DIR)/product/full_base_telephony.mk)
 
 # Recovery allowed devices
-TARGET_OTA_ASSERT_DEVICE := tecno,tecno_w2,tecno w2,w2
-
-PRODUCT_PACKAGES += \
-   libxlog
-
-# Set default player to AwesomePlayer
-PRODUCT_PROPERTY_OVERRIDES += \
-    persist.sys.media.use-awesome=true
+TARGET_OTA_ASSERT_DEVICE := TECNO-W2,w2,tecno_W2,tecno
 
 # Audio
 PRODUCT_PACKAGES += \
@@ -95,7 +52,8 @@ PRODUCT_COPY_FILES += \
 PRODUCT_PACKAGES += libmt6580
 
 PRODUCT_PROPERTY_OVERRIDES += \
-    ro.telephony.ril_class=MT6735
+    ro.telephony.ril_class=MT6580
+
 # Ramdisk
 PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/rootdir/enableswap.sh:root/enableswap.sh \
@@ -210,47 +168,24 @@ PRODUCT_PACKAGES += \
 PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/configs/agps_profiles_conf2.xml:system/etc/agps_profiles_conf2.xml \
 
-PRODUCT_DEFAULT_PROPERTY_OVERRIDES := \
-	ro.crypto.state=unencrypted \
-	ro.mount.fs=EXT4 \
-	ro.secure=0 \
-    ro.adb.secure=0 \
-    persist.service.acm.enable=0 \
-    persist.sys.usb.config=mtp,adb \
-	ro.allow.mock.location=0 \
-	ro.debuggable=1 \
-    persist.service.adb.enable=1 \
-	ro.zygote=zygote32 \
-	camera.disable_zsl_mode=1 \
-	dalvik.vm.dex2oat-Xms=64m \
-	dalvik.vm.dex2oat-Xmx=512m \
-	dalvik.vm.image-dex2oat-Xms=64m \
-	dalvik.vm.image-dex2oat-Xmx=64m \
-	ro.dalvik.vm.native.bridge=0 \
-	ro.hardware=mt6580 \
-	ro.telephony.ril_class=MT6735 \
-	ro.telephony.ril.config=fakeiccid 
-
 PRODUCT_DEFAULT_PROPERTY_OVERRIDES += \
-    pm.dexopt.first-boot=verify-at-runtime \
-    pm.dexopt.boot=verify-at-runtime \
-    pm.dexopt.install=interpret-only \
-    pm.dexopt.bg-dexopt=speed-profile \
-    pm.dexopt.ab-ota=speed-profile \
-    pm.dexopt.nsys-library=speed \
-    pm.dexopt.shared-apk=speed \
-    pm.dexopt.forced-dexopt=speed \
-    pm.dexopt.core-app=speed
+    ro.adb.secure=0 \
+    ro.secure=0 \
+    ro.allow.mock.location=1 \
+    ro.debuggable=1 \
+    ro.zygote=zygote64_32 \
+    camera.disable_zsl_mode=1 \
+    ro.mount.fs=EXT4 \
+    persist.service.acm.enable=1 \
+    persist.sys.usb.config=mtp,adb \
+    persist.mtk.aee.aed=on
 
 PRODUCT_PROPERTY_OVERRIDES += \
-    dalvik.vm.dex2oat-filter=speed \
-    dalvik.vm.dex2oat-swap=false \
     ro.kernel.android.checkjni=0 \
     ro.telephony.ril.config=signalstrength  \
     persist.call_recording.enabled=true \
     persist.call_recording.src=1 \
-    persist.debug.wfd.enable=1 \
-    persist.service.adb.enable=1
+    persist.debug.wfd.enable=1
 
 PRODUCT_PACKAGES += \
     librs_jni \
@@ -261,13 +196,11 @@ PRODUCT_PACKAGES += \
     libtinyxml
     
 # Browser
-PRODUCT_PACKAGES += \
-    Gello
 
-# FM Radio
+# FMRadio
 PRODUCT_PACKAGES += \
-FMRadio \
-libfmjni
+    FMRadio \
+    libmtkplayer
 
 # Camera
 PRODUCT_PACKAGES += \
@@ -282,8 +215,10 @@ PRODUCT_PACKAGES += \
     lights.mt6580
 
 # Sensor Calibration
-PRODUCT_PACKAGES += libem_sensor_jni
-
+PRODUCT_PACKAGES += \
+    libem_sensor_jni \
+    CIP_MD_SBP
+    
 # Filesystem management tools
 PRODUCT_PACKAGES += \
     e2fsck \
@@ -294,7 +229,16 @@ PRODUCT_PACKAGES += \
     resize2fs \
     setup_fs
 
+# Shim libraries
+PRODUCT_PACKAGES += \
+    libmtkshim_log \
+    libmtkshim_audio \
+    libmtkshim_ui \
+    libmtkshim_omx \
+    libmtkshim_gps \
+    libmtkshim_oth
+
 PRODUCT_BUILD_PROP_OVERRIDES += BUILD_UTC_DATE=8
 
 # Dalvik
-$(call inherit-product-if-exists, frameworks/native/build/phone-hdpi-1024-dalvik-heap.mk)
+$(call inherit-product-if-exists, frameworks/native/build/phone-xhdpi-1024-dalvik-heap.mk)
